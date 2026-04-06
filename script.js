@@ -4,6 +4,30 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- Floating particles ---
+  const particlesContainer = document.getElementById('particles');
+  if (particlesContainer) {
+    const createParticle = () => {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      const size = Math.random() * 4 + 2;
+      const left = Math.random() * 100;
+      const duration = Math.random() * 12 + 10;
+      const delay = Math.random() * 8;
+      particle.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${left}%;
+        bottom: -10px;
+        animation-duration: ${duration}s;
+        animation-delay: ${delay}s;
+        opacity: 0;
+      `;
+      particlesContainer.appendChild(particle);
+    };
+    for (let i = 0; i < 30; i++) createParticle();
+  }
+
   // --- Navbar scroll effect ---
   const navbar = document.getElementById('navbar');
 
