@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <!-- Diamond shape behind M -->
+  <path d="M200 18 L230 80 L200 142 L170 80 Z" fill="#C4A55A" opacity="0.9"/>
+  <path d="M200 50 L215 80 L200 110 L185 80 Z" fill="#C4A55A"/>
+
+  <!-- R -->
+  <text x="72" y="118" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="100" fill="#1A1A1A" letter-spacing="-2">R</text>
+
+  <!-- M -->
+  <text x="148" y="118" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="100" fill="#1A1A1A" letter-spacing="-2">M</text>
+
+  <!-- O -->
+  <text x="262" y="118" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="100" fill="#1A1A1A" letter-spacing="-2">O</text>
+
+  <!-- SCHILDERSBEDRIJF -->
+  <text x="200" y="152" font-family="'Arial', 'Helvetica Neue', sans-serif" font-weight="500" font-size="19" fill="#C4A55A" text-anchor="middle" letter-spacing="8">SCHILDERSBEDRIJF</text>
+
+  <!-- Lines around SINDS 1997 -->
+  <line x1="62" y1="173" x2="142" y2="173" stroke="#1B3C2D" stroke-width="1.5"/>
+  <line x1="258" y1="173" x2="338" y2="173" stroke="#1B3C2D" stroke-width="1.5"/>
+
+  <!-- SINDS 1997 -->
+  <text x="200" y="178" font-family="'Arial', 'Helvetica Neue', sans-serif" font-weight="600" font-size="16" fill="#C4A55A" text-anchor="middle" letter-spacing="6">SINDS 1997</text>
+</svg>
