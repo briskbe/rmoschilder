@@ -18,8 +18,8 @@
   --gray-300: #C8C4BA;
   --gray-500: #8A8679;
   --gray-700: #4A4740;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-display: 'Circular', -apple-system, 'Helvetica Neue', sans-serif;
+  --font-body: 'Circular', -apple-system, 'Helvetica Neue', sans-serif;
   --nav-height: 80px;
   --container-max: 1200px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
