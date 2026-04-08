@@ -580,22 +580,10 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
 }
 
-.about-img-placeholder {
+.about-img-main img {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  color: var(--gray-300);
-}
-.about-img-placeholder svg { width: 80px; height: 80px; }
-.about-img-placeholder span {
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  object-fit: cover;
 }
 
 .about-experience-badge {
