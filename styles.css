@@ -521,14 +521,7 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   background: var(--white);
   border-radius: 12px;
   padding: 36px 28px;
-  transition: all var(--transition);
   border: 1px solid var(--gray-200);
-}
-
-.service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  border-color: var(--gold-light);
 }
 
 .service-icon {
@@ -564,11 +557,6 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--gold-dark);
-  transition: all var(--transition);
-}
-.service-link:hover {
-  color: var(--gold);
-  letter-spacing: 0.5px;
 }
 
 /* ============================================
