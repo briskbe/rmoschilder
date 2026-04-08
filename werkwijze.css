@@ -52,33 +52,43 @@
   overflow: hidden;
 }
 
-.wk-orb {
+.wk-hero-img {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
 }
 
-.wk-orb-1 {
-  width: 600px;
-  height: 600px;
-  top: -20%;
-  left: -15%;
-  background: rgba(27, 60, 45, 0.12);
-  animation: wkOrbDrift 16s ease-in-out infinite;
-}
-
-.wk-orb-2 {
-  width: 400px;
-  height: 400px;
-  bottom: -10%;
-  right: -10%;
-  background: rgba(196, 165, 90, 0.06);
-  animation: wkOrbDrift 12s ease-in-out infinite reverse;
-}
-
-@keyframes wkOrbDrift {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(40px, -30px); }
+.wk-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(13, 13, 13, 0.88) 0%,
+      rgba(13, 13, 13, 0.7) 40%,
+      rgba(13, 13, 13, 0.55) 60%,
+      rgba(13, 13, 13, 0.65) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(13, 13, 13, 0.5) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(13, 13, 13, 0.95) 100%
+    ),
+    radial-gradient(
+      ellipse at 20% 50%,
+      rgba(27, 60, 45, 0.2) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 80% 30%,
+      rgba(196, 165, 90, 0.06) 0%,
+      transparent 50%
+    );
 }
 
 .wk-hero-content {
