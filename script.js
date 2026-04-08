@@ -108,4 +108,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 3000);
     });
   }
+
+  // --- WhatsApp Widget ---
+  const waWidget = document.getElementById('waWidget');
+  const waFab = document.getElementById('waFab');
+  const waClose = document.getElementById('waClose');
+
+  if (waFab) {
+    waFab.addEventListener('click', () => {
+      waWidget.classList.toggle('open');
+    });
+  }
+
+  if (waClose) {
+    waClose.addEventListener('click', () => {
+      waWidget.classList.remove('open');
+    });
+  }
 });

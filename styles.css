@@ -241,16 +241,17 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   pointer-events: none;
 }
 
-.hero-video-wrap video {
+.hero-video-wrap iframe {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: auto;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
+  width: 120vw;
+  height: 120vh;
+  min-width: 177.78vh;
+  min-height: 56.25vw;
   transform: translate(-50%, -50%);
-  object-fit: cover;
+  border: 0;
+  pointer-events: none;
 }
 
 /* --- Animated Overlay Layers --- */
@@ -1042,6 +1043,274 @@ h3 { font-size: 1.3rem; font-weight: 600; }
 }
 
 /* ============================================
+   WHATSAPP WIDGET
+   ============================================ */
+.wa-widget {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  font-family: var(--font-body);
+}
+
+/* Floating Action Button */
+.wa-fab {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #25D366;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 14px rgba(37, 211, 102, 0.4),
+    0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 2;
+}
+
+.wa-fab:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 6px 20px rgba(37, 211, 102, 0.5),
+    0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.wa-fab-icon,
+.wa-fab-close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  color: var(--white);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wa-fab-icon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.wa-fab-close {
+  opacity: 0;
+  transform: scale(0.5) rotate(-90deg);
+}
+
+.wa-widget.open .wa-fab-icon {
+  opacity: 0;
+  transform: scale(0.5) rotate(90deg);
+}
+
+.wa-widget.open .wa-fab-close {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Pulse ring */
+.wa-fab-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.4);
+  animation: waPulse 2.5s ease-out infinite;
+}
+
+.wa-widget.open .wa-fab-pulse {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes waPulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* Chat Window */
+.wa-chat {
+  position: absolute;
+  bottom: 78px;
+  right: 0;
+  width: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.18),
+    0 4px 16px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.95);
+  transform-origin: bottom right;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wa-widget.open .wa-chat {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Chat Header */
+.wa-chat-header {
+  background: #075E54;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.wa-chat-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #25D366, #128C7E, #075E54);
+}
+
+.wa-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wa-avatar svg {
+  width: 28px;
+  height: 28px;
+}
+
+.wa-header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.wa-name {
+  display: block;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.wa-status {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  margin-top: 1px;
+}
+
+.wa-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 4px;
+  border-radius: 50%;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.wa-close svg { width: 18px; height: 18px; }
+
+.wa-close:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Chat Body */
+.wa-chat-body {
+  padding: 24px 20px;
+  background: #ECE5DD url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c1 0 2 3 2 4s-1 3-2 3-2-2-2-3 1-4 2-4zm15 10c1 1 0 3-1 3s-3-1-3-2 2-3 3-3 1 1 1 2zM15 15c-1 1 0 3 1 3s3-1 3-2-2-3-3-3-1 1-1 2zm20 20c1 0 2 2 2 3s-1 3-2 3-2-2-2-3 1-3 2-3zM20 40c1 0 2 2 2 3s-1 3-2 3-2-2-2-3 1-3 2-3zm25 5c1 1-1 3-2 3s-2-2-1-3 2-1 3 0z' fill='%23d4cfc6' fill-opacity='0.3'/%3E%3C/svg%3E");
+  min-height: 120px;
+}
+
+.wa-bubble {
+  background: var(--white);
+  padding: 14px 16px;
+  border-radius: 0 12px 12px 12px;
+  max-width: 85%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  position: relative;
+  animation: bubbleIn 0.5s ease-out 0.2s both;
+}
+
+.wa-bubble::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 10px 0;
+  border-color: transparent var(--white) transparent transparent;
+}
+
+.wa-bubble p {
+  font-size: 0.88rem;
+  color: var(--black);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.wa-time {
+  display: block;
+  text-align: right;
+  font-size: 0.7rem;
+  color: var(--gray-500);
+  margin-top: 6px;
+}
+
+@keyframes bubbleIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Send Button */
+.wa-send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  background: #25D366;
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all var(--transition);
+  border: none;
+  cursor: pointer;
+}
+
+.wa-send-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.wa-send-btn:hover {
+  background: #22BF5B;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================
    ANIMATIONS
    ============================================ */
 @keyframes fadeInUp {
@@ -1148,4 +1417,10 @@ h3 { font-size: 1.3rem; font-weight: 600; }
 @media (max-width: 480px) {
   .hero h1 { font-size: 2rem; }
   .hero-badge { font-size: 0.75rem; }
+
+  .wa-widget { bottom: 20px; right: 20px; }
+  .wa-chat {
+    width: calc(100vw - 40px);
+    right: -8px;
+  }
 }
