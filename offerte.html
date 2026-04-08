@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offerte Aanvragen | RMO Schildersbedrijf</title>
+  <meta name="description" content="Vraag een vrijblijvende offerte aan bij RMO Schildersbedrijf. Binnen 24 uur reactie.">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="offerte.css">
+</head>
+<body class="page-offerte">
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="RMO Schildersbedrijf">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#diensten">Diensten</a></li>
+        <li><a href="index.html#over-ons">Over Ons</a></li>
+        <li><a href="index.html#werkwijze">Werkwijze</a></li>
+        <li><a href="index.html#projecten">Projecten</a></li>
+        <li><a href="offerte.html" class="nav-cta">Offerte Aanvragen</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu openen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Wizard Section -->
+  <section class="wizard-section">
+    <div class="wizard-bg">
+      <div class="wizard-glow wizard-glow-1"></div>
+      <div class="wizard-glow wizard-glow-2"></div>
+    </div>
+
+    <div class="wizard-container">
+      <!-- Header -->
+      <div class="wizard-header">
+        <a href="index.html" class="wizard-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Terug
+        </a>
+        <h1>Offerte <span class="text-gold">aanvragen</span></h1>
+        <p>Doorloop de stappen en ontvang binnen 24 uur een vrijblijvende offerte.</p>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="wizard-progress">
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-steps">
+          <div class="progress-step active" data-step="1">
+            <div class="step-dot"><span>1</span></div>
+            <span class="step-label">Dienst</span>
+          </div>
+          <div class="progress-step" data-step="2">
+            <div class="step-dot"><span>2</span></div>
+            <span class="step-label">Project</span>
+          </div>
+          <div class="progress-step" data-step="3">
+            <div class="step-dot"><span>3</span></div>
+            <span class="step-label">Gegevens</span>
+          </div>
+          <div class="progress-step" data-step="4">
+            <div class="step-dot"><span>4</span></div>
+            <span class="step-label">Verstuur</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="offerteForm" class="wizard-form" action="https://formsubmit.co/info@rmoschildersbedrijf.be" method="POST">
+        <!-- FormSubmit config -->
+        <input type="hidden" name="_subject" value="Nieuwe offerte aanvraag via website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="">
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_template" value="table">
+
+        <!-- Step 1: Service Selection -->
+        <div class="wizard-step active" data-step="1">
+          <div class="step-intro">
+            <h2>Welke dienst zoekt u?</h2>
+            <p>Selecteer het type schilderwerk dat u nodig heeft.</p>
+          </div>
+          <div class="service-select-grid">
+            <label class="service-option">
+              <input type="radio" name="dienst" value="Binnenschilderwerk" required>
+              <div class="option-card">
+                <div class="option-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="6" y="8" width="36" height="32" rx="3"/>
+                    <path d="M6 18h36"/>
+                    <rect x="12" y="24" width="10" height="10" rx="1.5"/>
+                    <line x1="28" y1="26" x2="36" y2="26" stroke-linecap="round"/>
+                    <line x1="28" y1="32" x2="36" y2="32" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h3>Binnenschilderwerk</h3>
+                <p>Muren, plafonds, kozijnen en deuren</p>
+              </div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="dienst" value="Buitenschilderwerk">
+              <div class="option-card">
+                <div class="option-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 40V16l16-10 16 10v24" stroke-linejoin="round"/>
+                    <rect x="18" y="28" width="12" height="12" rx="1"/>
+                    <line x1="24" y1="28" x2="24" y2="40"/>
+                    <rect x="14" y="18" width="8" height="6" rx="1"/>
+                    <rect x="26" y="18" width="8" height="6" rx="1"/>
+                  </svg>
+                </div>
+                <h3>Buitenschilderwerk</h3>
+                <p>Gevels, kozijnen en buitenhoutwerk</p>
+              </div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="dienst" value="Behangwerk">
+              <div class="option-card">
+                <div class="option-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="8" y="6" width="32" height="36" rx="2"/>
+                    <path d="M8 6 C16 16, 22 12, 40 6"/>
+                    <path d="M8 22 C18 26, 28 18, 40 22"/>
+                    <path d="M8 38 C22 30, 30 36, 40 32"/>
+                  </svg>
+                </div>
+                <h3>Behangwerk</h3>
+                <p>Vlies-, patroon- en structuurbehang</p>
+              </div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="dienst" value="Lakwerk & Houtrot">
+              <div class="option-card">
+                <div class="option-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="24" cy="24" r="16"/>
+                    <path d="M24 8 C21 16, 15 20, 8 24 C15 28, 21 32, 24 40 C27 32, 33 28, 40 24 C33 20, 27 16, 24 8Z" fill="none"/>
+                  </svg>
+                </div>
+                <h3>Lakwerk &amp; Houtrot</h3>
+                <p>Herstel, behandeling en lakwerk</p>
+              </div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="dienst" value="Combinatie / Anders">
+              <div class="option-card">
+                <div class="option-icon">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="24" cy="24" r="16"/>
+                    <line x1="24" y1="16" x2="24" y2="32" stroke-linecap="round"/>
+                    <line x1="16" y1="24" x2="32" y2="24" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h3>Combinatie / Anders</h3>
+                <p>Meerdere diensten of iets anders</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Step 2: Project Details -->
+        <div class="wizard-step" data-step="2">
+          <div class="step-intro">
+            <h2>Vertel ons meer over uw project</h2>
+            <p>Hoe meer details, hoe nauwkeuriger onze offerte.</p>
+          </div>
+          <div class="form-card">
+            <div class="form-group">
+              <label for="projectType">Type pand</label>
+              <select id="projectType" name="type_pand" required>
+                <option value="">Selecteer type pand</option>
+                <option value="Woonhuis">Woonhuis</option>
+                <option value="Appartement">Appartement</option>
+                <option value="Kantoor">Kantoor</option>
+                <option value="Winkel">Winkel</option>
+                <option value="Monumentaal pand">Monumentaal pand</option>
+                <option value="Nieuwbouw">Nieuwbouw</option>
+                <option value="Anders">Anders</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rooms">Aantal ruimtes (ca.)</label>
+                <select id="rooms" name="aantal_ruimtes">
+                  <option value="">Selecteer</option>
+                  <option value="1-2 ruimtes">1 - 2 ruimtes</option>
+                  <option value="3-5 ruimtes">3 - 5 ruimtes</option>
+                  <option value="6-10 ruimtes">6 - 10 ruimtes</option>
+                  <option value="10+ ruimtes">10+ ruimtes</option>
+                  <option value="Volledige woning">Volledige woning</option>
+                  <option value="Niet van toepassing">Niet van toepassing</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="timing">Gewenste planning</label>
+                <select id="timing" name="planning">
+                  <option value="">Selecteer</option>
+                  <option value="Zo snel mogelijk">Zo snel mogelijk</option>
+                  <option value="Binnen 1 maand">Binnen 1 maand</option>
+                  <option value="Binnen 3 maanden">Binnen 3 maanden</option>
+                  <option value="Flexibel">Flexibel</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Omschrijving van het project</label>
+              <textarea id="description" name="omschrijving" rows="4" placeholder="Beschrijf kort wat u in gedachten heeft. Bijvoorbeeld: alle muren en plafonds in de woonkamer en slaapkamer laten schilderen..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Contact Info -->
+        <div class="wizard-step" data-step="3">
+          <div class="step-intro">
+            <h2>Uw contactgegevens</h2>
+            <p>Zodat wij u kunnen bereiken voor de offerte.</p>
+          </div>
+          <div class="form-card">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">Voornaam</label>
+                <input type="text" id="firstName" name="voornaam" placeholder="Voornaam" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Achternaam</label>
+                <input type="text" id="lastName" name="achternaam" placeholder="Achternaam" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="offerteEmail">E-mailadres</label>
+              <input type="email" id="offerteEmail" name="email" placeholder="uw@email.be" required>
+            </div>
+            <div class="form-group">
+              <label for="offertePhone">Telefoonnummer</label>
+              <input type="tel" id="offertePhone" name="telefoon" placeholder="+32 4XX XX XX XX" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="street">Straat + nummer</label>
+                <input type="text" id="street" name="adres" placeholder="Straatnaam 123">
+              </div>
+              <div class="form-group">
+                <label for="city">Postcode + gemeente</label>
+                <input type="text" id="city" name="gemeente" placeholder="3970 Leopoldsburg">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Review & Submit -->
+        <div class="wizard-step" data-step="4">
+          <div class="step-intro">
+            <h2>Overzicht van uw aanvraag</h2>
+            <p>Controleer uw gegevens en verstuur de offerte aanvraag.</p>
+          </div>
+          <div class="review-card">
+            <div class="review-section">
+              <h4>Dienst</h4>
+              <p id="reviewService">-</p>
+            </div>
+            <div class="review-divider"></div>
+            <div class="review-section">
+              <h4>Project</h4>
+              <div class="review-grid">
+                <div><span class="review-label">Type pand</span><span id="reviewProperty">-</span></div>
+                <div><span class="review-label">Ruimtes</span><span id="reviewRooms">-</span></div>
+                <div><span class="review-label">Planning</span><span id="reviewTiming">-</span></div>
+              </div>
+              <div class="review-desc" id="reviewDescWrap" style="display:none">
+                <span class="review-label">Omschrijving</span>
+                <p id="reviewDesc"></p>
+              </div>
+            </div>
+            <div class="review-divider"></div>
+            <div class="review-section">
+              <h4>Contactgegevens</h4>
+              <div class="review-grid">
+                <div><span class="review-label">Naam</span><span id="reviewName">-</span></div>
+                <div><span class="review-label">E-mail</span><span id="reviewEmail">-</span></div>
+                <div><span class="review-label">Telefoon</span><span id="reviewPhone">-</span></div>
+                <div><span class="review-label">Adres</span><span id="reviewAddress">-</span></div>
+              </div>
+            </div>
+          </div>
+          <label class="consent-check">
+            <input type="checkbox" name="akkoord" required>
+            <span class="checkmark"></span>
+            <span>Ik ga akkoord met de verwerking van mijn gegevens voor deze offerte aanvraag.</span>
+          </label>
+        </div>
+
+        <!-- Success State -->
+        <div class="wizard-success" id="wizardSuccess">
+          <div class="success-icon">
+            <svg viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="36" stroke="var(--gold)" stroke-width="3"/>
+              <polyline points="24 40 36 52 56 30" stroke="var(--gold)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h2>Aanvraag verstuurd</h2>
+          <p>Bedankt voor uw offerte aanvraag. Wij nemen binnen 24 uur contact met u op.</p>
+          <a href="index.html" class="btn btn-primary">Terug naar Home</a>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="wizard-nav" id="wizardNav">
+          <button type="button" class="btn btn-back" id="btnPrev" style="visibility:hidden">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            Vorige
+          </button>
+          <button type="button" class="btn btn-primary btn-next" id="btnNext">
+            Volgende
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <button type="submit" class="btn btn-primary btn-submit" id="btnSubmit" style="display:none">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            Offerte Aanvragen
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script src="offerte.js"></script>
+</body>
+</html>
