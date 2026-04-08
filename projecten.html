@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projecten | RMO Schildersbedrijf</title>
+  <meta name="description" content="Bekijk binnenkort onze projecten en referenties. RMO Schildersbedrijf — vakmanschap sinds 1997.">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: var(--dark);
+      overflow: hidden;
+    }
+
+    .coming-soon {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Ambient background */
+    .cs-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .cs-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+
+    .cs-orb-1 {
+      width: 500px;
+      height: 500px;
+      top: -15%;
+      right: -10%;
+      background: rgba(196, 165, 90, 0.06);
+      animation: orbFloat 14s ease-in-out infinite;
+    }
+
+    .cs-orb-2 {
+      width: 400px;
+      height: 400px;
+      bottom: -10%;
+      left: -10%;
+      background: rgba(27, 60, 45, 0.1);
+      animation: orbFloat 11s ease-in-out infinite reverse;
+    }
+
+    .cs-orb-3 {
+      width: 200px;
+      height: 200px;
+      top: 40%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(196, 165, 90, 0.04);
+      animation: orbPulse 6s ease-in-out infinite;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(25px, -15px); }
+      66% { transform: translate(-15px, 20px); }
+    }
+
+    @keyframes orbPulse {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+      50% { transform: translateX(-50%) scale(1.4); opacity: 1; }
+    }
+
+    /* Content */
+    .cs-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 580px;
+      padding: 0 24px;
+    }
+
+    /* Animated paint stroke icon */
+    .cs-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 36px;
+      position: relative;
+    }
+
+    .cs-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .cs-brush-stroke {
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: brushDraw 2s ease-out 0.5s forwards;
+    }
+
+    .cs-brush-dot {
+      opacity: 0;
+      animation: dotAppear 0.4s ease-out 2.2s forwards;
+    }
+
+    @keyframes brushDraw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes dotAppear {
+      from { opacity: 0; transform: scale(0); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Text animations */
+    .cs-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: csReveal 0.7s ease-out 0.8s forwards;
+    }
+
+    .cs-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: csReveal 0.7s ease-out 1s forwards;
+    }
+
+    .cs-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      margin-bottom: 44px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: csReveal 0.7s ease-out 1.2s forwards;
+    }
+
+    .cs-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: csReveal 0.7s ease-out 1.4s forwards;
+    }
+
+    .cs-actions .btn-outline {
+      border-color: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.6);
+    }
+
+    .cs-actions .btn-outline:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.25);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* Decorative line */
+    .cs-line {
+      width: 48px;
+      height: 2px;
+      margin: 0 auto 36px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      animation: csReveal 0.7s ease-out 0.9s forwards;
+    }
+
+    @keyframes csReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .cs-title { font-size: 1.8rem; }
+      .cs-actions { flex-direction: column; align-items: center; }
+      .cs-actions .btn { width: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.svg" alt="RMO Schildersbedrijf">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#diensten">Diensten</a></li>
+        <li><a href="index.html#over-ons">Over Ons</a></li>
+        <li><a href="index.html#werkwijze">Werkwijze</a></li>
+        <li><a href="projecten.html">Projecten</a></li>
+        <li><a href="offerte.html" class="nav-cta">Offerte Aanvragen</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu openen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Coming Soon -->
+  <section class="coming-soon">
+    <div class="cs-bg">
+      <div class="cs-orb cs-orb-1"></div>
+      <div class="cs-orb cs-orb-2"></div>
+      <div class="cs-orb cs-orb-3"></div>
+    </div>
+    <div class="cs-content">
+      <div class="cs-icon">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="cs-brush-stroke" d="M12 56 C18 42, 24 34, 32 28 C40 22, 48 20, 56 16" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
+          <path class="cs-brush-stroke" d="M16 60 C22 48, 30 40, 40 34 C48 28, 54 24, 60 20" stroke="rgba(196,165,90,0.4)" stroke-width="1.5" stroke-linecap="round" style="animation-delay: 0.8s"/>
+          <circle class="cs-brush-dot" cx="58" cy="17" r="3" fill="var(--gold)" style="transform-origin: 58px 17px"/>
+        </svg>
+      </div>
+      <div class="cs-line"></div>
+      <span class="cs-tag">Binnenkort beschikbaar</span>
+      <h1 class="cs-title">Hier wordt nog aan <span class="text-gold">geschilderd</span></h1>
+      <p class="cs-desc">We zijn onze mooiste projecten aan het verzamelen. Binnenkort kunt u hier door onze werk bladeren — van complete woningrenovaties tot monumentale restauraties. Het wordt de moeite waard.</p>
+      <div class="cs-actions">
+        <a href="offerte.html" class="btn btn-primary">Vraag alvast een offerte aan</a>
+        <a href="index.html" class="btn btn-outline">Terug naar Home</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navLinks.classList.toggle('open');
+        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navToggle.classList.remove('active');
+          navLinks.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  </script>
+</body>
+</html>
