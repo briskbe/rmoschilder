@@ -34,13 +34,7 @@
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-video-wrap">
-      <iframe id="heroVideo"
-        src="https://www.youtube.com/embed/lRI4K8hapBs?autoplay=1&mute=1&loop=1&playlist=lRI4K8hapBs&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        title="Hero background video">
-      </iframe>
+      <div id="heroVideo"></div>
     </div>
     <div class="hero-overlay">
       <div class="overlay-grain"></div>
@@ -419,5 +413,36 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    // YouTube IFrame API — show video only after it's actually playing
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+
+    function onYouTubeIframeAPIReady() {
+      new YT.Player('heroVideo', {
+        videoId: 'lRI4K8hapBs',
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          loop: 1,
+          playlist: 'lRI4K8hapBs',
+          controls: 0,
+          showinfo: 0,
+          rel: 0,
+          modestbranding: 1,
+          playsinline: 1
+        },
+        events: {
+          onReady: function(e) { e.target.playVideo(); },
+          onStateChange: function(e) {
+            if (e.data === YT.PlayerState.PLAYING) {
+              e.target.getIframe().classList.add('video-ready');
+            }
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>

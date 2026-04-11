@@ -239,6 +239,7 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  background: url('https://img.youtube.com/vi/lRI4K8hapBs/maxresdefault.jpg') center/cover no-repeat;
 }
 
 .hero-video-wrap iframe {
@@ -252,6 +253,12 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   transform: translate(-50%, -50%);
   border: 0;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.hero-video-wrap iframe.video-ready {
+  opacity: 1;
 }
 
 /* --- Animated Overlay Layers --- */
