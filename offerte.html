@@ -76,13 +76,9 @@
       </div>
 
       <!-- Form -->
-      <form id="offerteForm" class="wizard-form" action="https://formsubmit.co/info@rmoschildersbedrijf.be" method="POST">
-        <!-- FormSubmit config -->
-        <input type="hidden" name="_subject" value="Nieuwe offerte aanvraag via website">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="">
-        <input type="text" name="_honey" style="display:none">
-        <input type="hidden" name="_template" value="table">
+      <form id="offerteForm" class="wizard-form" action="/api/offerte" method="POST">
+        <!-- Honeypot anti-spam field -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
         <!-- Step 1: Service Selection -->
         <div class="wizard-step active" data-step="1">

@@ -167,25 +167,40 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     if (!validateStep(currentStep)) return;
 
+    // Honeypot check (spam bots fill hidden fields)
+    const honey = form.querySelector('[name="_honey"]');
+    if (honey && honey.value) return;
+
     const submitBtn = btnSubmit;
     const originalHTML = submitBtn.innerHTML;
     submitBtn.innerHTML = '<span class="btn-loading"></span> Versturen...';
     submitBtn.disabled = true;
 
+    // Collect form data as JSON
     const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+      if (!key.startsWith('_')) data[key] = value;
+    });
 
     fetch(form.action, {
       method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(data),
     })
-    .then(response => {
-      // Show success regardless (formsubmit.co may redirect)
-      showSuccess();
+    .then(response => response.json())
+    .then(result => {
+      if (result.success) {
+        showSuccess();
+      } else {
+        showError(result.message || 'Er is iets misgegaan. Probeer het opnieuw.');
+      }
     })
     .catch(() => {
-      // Still show success — formsubmit.co often returns opaque responses
-      showSuccess();
+      showError('Verbindingsfout. Controleer uw internetverbinding en probeer het opnieuw.');
     });
 
     function showSuccess() {
@@ -194,6 +209,21 @@ document.addEventListener('DOMContentLoaded', () => {
       wizardSuccess.classList.add('active');
       document.querySelector('.wizard-progress').style.display = 'none';
       document.querySelector('.wizard-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showError(message) {
+      submitBtn.innerHTML = originalHTML;
+      submitBtn.disabled = false;
+      // Show error message below submit button
+      let errorEl = document.getElementById('submitError');
+      if (!errorEl) {
+        errorEl = document.createElement('p');
+        errorEl.id = 'submitError';
+        errorEl.style.cssText = 'color:#e74c3c;text-align:center;margin-top:16px;font-size:14px;';
+        wizardNav.parentNode.insertBefore(errorEl, wizardNav.nextSibling);
+      }
+      errorEl.textContent = message;
+      setTimeout(() => { if (errorEl) errorEl.remove(); }, 8000);
     }
   });
 
@@ -207,9 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- Set redirect URL for FormSubmit ---
-  const nextInput = form.querySelector('input[name="_next"]');
-  if (nextInput) {
-    nextInput.value = window.location.href;
-  }
+  // --- Init ---
+  updateWizard();
 });
