@@ -174,18 +174,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const formData = new FormData(form);
 
-    fetch(form.action, {
+    // Use the FormSubmit AJAX endpoint for proper fetch/JSON support
+    const ajaxUrl = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+    fetch(ajaxUrl, {
       method: 'POST',
       body: formData,
       headers: { 'Accept': 'application/json' }
     })
-    .then(response => {
-      // Show success regardless (formsubmit.co may redirect)
-      showSuccess();
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        showSuccess();
+      } else {
+        showError('Er is iets misgegaan bij het versturen. Probeer het opnieuw of neem telefonisch contact op.');
+      }
     })
     .catch(() => {
-      // Still show success — formsubmit.co often returns opaque responses
-      showSuccess();
+      showError('Er kon geen verbinding worden gemaakt. Controleer uw internetverbinding en probeer het opnieuw.');
     });
 
     function showSuccess() {
@@ -194,6 +200,23 @@ document.addEventListener('DOMContentLoaded', () => {
       wizardSuccess.classList.add('active');
       document.querySelector('.wizard-progress').style.display = 'none';
       document.querySelector('.wizard-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showError(message) {
+      submitBtn.innerHTML = originalHTML;
+      submitBtn.disabled = false;
+
+      // Remove any existing error message
+      const existingError = form.querySelector('.wizard-error');
+      if (existingError) existingError.remove();
+
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'wizard-error';
+      errorDiv.innerHTML = '<p>' + message + '</p>';
+      wizardNav.before(errorDiv);
+
+      // Auto-remove after 8 seconds
+      setTimeout(() => errorDiv.remove(), 8000);
     }
   });
 

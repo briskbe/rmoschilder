@@ -550,6 +550,23 @@
   margin-right: auto;
 }
 
+/* --- Wizard Submit Error --- */
+.wizard-error {
+  background: rgba(231, 76, 60, 0.08);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-top: 24px;
+  animation: stepFadeIn 0.4s ease-out;
+}
+
+.wizard-error p {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
 /* --- Form Validation Error --- */
 .form-card input.error,
 .form-card select.error {
