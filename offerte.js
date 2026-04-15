@@ -173,18 +173,19 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.disabled = true;
 
     const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
 
-    // Use the FormSubmit AJAX endpoint for proper fetch/JSON support
-    const ajaxUrl = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-
-    fetch(ajaxUrl, {
+    fetch(form.action, {
       method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
     })
     .then(response => response.json())
-    .then(data => {
-      if (data.success) {
+    .then(result => {
+      if (result.success) {
         showSuccess();
       } else {
         showError('Er is iets misgegaan bij het versturen. Probeer het opnieuw of neem telefonisch contact op.');
@@ -230,9 +231,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- Set redirect URL for FormSubmit ---
-  const nextInput = form.querySelector('input[name="_next"]');
-  if (nextInput) {
-    nextInput.value = window.location.href;
-  }
 });
