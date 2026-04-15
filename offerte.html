@@ -76,13 +76,9 @@
       </div>
 
       <!-- Form -->
-      <form id="offerteForm" class="wizard-form" action="https://formsubmit.co/info@rmoschildersbedrijf.be" method="POST">
-        <!-- FormSubmit config -->
-        <input type="hidden" name="_subject" value="Nieuwe offerte aanvraag via website">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="">
-        <input type="text" name="_honey" style="display:none">
-        <input type="hidden" name="_template" value="table">
+      <form id="offerteForm" class="wizard-form">
+        <!-- Honeypot spam filter -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
         <!-- Step 1: Service Selection -->
         <div class="wizard-step active" data-step="1">
@@ -308,8 +304,22 @@
             </svg>
           </div>
           <h2>Aanvraag verstuurd</h2>
-          <p>Bedankt voor uw offerte aanvraag. Wij nemen binnen 24 uur contact met u op.</p>
+          <p>Bedankt voor uw offerte aanvraag. U ontvangt een bevestiging per e-mail. Wij nemen binnen 24 uur contact met u op.</p>
           <a href="index.html" class="btn btn-primary">Terug naar Home</a>
+        </div>
+
+        <!-- Error State -->
+        <div class="wizard-success" id="wizardError" style="display:none;">
+          <div class="success-icon">
+            <svg viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="36" stroke="#e74c3c" stroke-width="3"/>
+              <line x1="28" y1="28" x2="52" y2="52" stroke="#e74c3c" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="52" y1="28" x2="28" y2="52" stroke="#e74c3c" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h2>Er ging iets mis</h2>
+          <p>Uw aanvraag kon niet worden verstuurd. Probeer het opnieuw of neem telefonisch contact met ons op via <a href="tel:+32473855349" style="color:var(--gold);">+32 473 85 53 49</a>.</p>
+          <button type="button" class="btn btn-primary" id="btnRetry">Opnieuw proberen</button>
         </div>
 
         <!-- Navigation Buttons -->

@@ -163,39 +163,81 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- Form Submit ---
+  const wizardError = document.getElementById('wizardError');
+  const btnRetry = document.getElementById('btnRetry');
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validateStep(currentStep)) return;
 
-    const submitBtn = btnSubmit;
-    const originalHTML = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<span class="btn-loading"></span> Versturen...';
-    submitBtn.disabled = true;
+    // Honeypot check
+    if (form.querySelector('[name="_honey"]').value) return;
 
-    const formData = new FormData(form);
+    const originalHTML = btnSubmit.innerHTML;
+    btnSubmit.innerHTML = '<span class="btn-loading"></span> Versturen...';
+    btnSubmit.disabled = true;
 
-    fetch(form.action, {
+    const payload = {
+      dienst: (form.querySelector('[name="dienst"]:checked') || {}).value || '',
+      type_pand: form.querySelector('[name="type_pand"]').value,
+      aantal_ruimtes: form.querySelector('[name="aantal_ruimtes"]').value,
+      planning: form.querySelector('[name="planning"]').value,
+      omschrijving: form.querySelector('[name="omschrijving"]').value,
+      voornaam: form.querySelector('[name="voornaam"]').value,
+      achternaam: form.querySelector('[name="achternaam"]').value,
+      email: form.querySelector('[name="email"]').value,
+      telefoon: form.querySelector('[name="telefoon"]').value,
+      adres: form.querySelector('[name="adres"]').value,
+      gemeente: form.querySelector('[name="gemeente"]').value,
+    };
+
+    fetch('/api/send-offerte', {
       method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
     })
-    .then(response => {
-      // Show success regardless (formsubmit.co may redirect)
-      showSuccess();
+    .then(res => {
+      if (!res.ok) throw new Error('Server error');
+      return res.json();
     })
-    .catch(() => {
-      // Still show success — formsubmit.co often returns opaque responses
-      showSuccess();
+    .then(() => showSuccess())
+    .catch(() => showError())
+    .finally(() => {
+      btnSubmit.innerHTML = originalHTML;
+      btnSubmit.disabled = false;
     });
-
-    function showSuccess() {
-      steps.forEach(s => s.classList.remove('active'));
-      wizardNav.style.display = 'none';
-      wizardSuccess.classList.add('active');
-      document.querySelector('.wizard-progress').style.display = 'none';
-      document.querySelector('.wizard-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
   });
+
+  function showSuccess() {
+    steps.forEach(s => s.classList.remove('active'));
+    wizardNav.style.display = 'none';
+    wizardError.style.display = 'none';
+    wizardSuccess.classList.add('active');
+    document.querySelector('.wizard-progress').style.display = 'none';
+    document.querySelector('.wizard-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function showError() {
+    steps.forEach(s => s.classList.remove('active'));
+    wizardNav.style.display = 'none';
+    wizardSuccess.classList.remove('active');
+    wizardError.style.display = '';
+    wizardError.classList.add('active');
+    document.querySelector('.wizard-progress').style.display = 'none';
+    document.querySelector('.wizard-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Retry button — reset wizard to step 4 so user can resubmit
+  if (btnRetry) {
+    btnRetry.addEventListener('click', () => {
+      wizardError.style.display = 'none';
+      wizardError.classList.remove('active');
+      wizardNav.style.display = '';
+      document.querySelector('.wizard-progress').style.display = '';
+      currentStep = totalSteps;
+      updateWizard();
+    });
+  }
 
   // --- Keyboard: Enter to next ---
   form.addEventListener('keydown', (e) => {
@@ -206,10 +248,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
-
-  // --- Set redirect URL for FormSubmit ---
-  const nextInput = form.querySelector('input[name="_next"]');
-  if (nextInput) {
-    nextInput.value = window.location.href;
-  }
 });
