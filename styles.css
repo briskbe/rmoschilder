@@ -232,7 +232,7 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   background: var(--dark);
 }
 
-/* --- YouTube Video Background --- */
+/* --- Video Background --- */
 .hero-video-wrap {
   position: absolute;
   inset: 0;
@@ -241,16 +241,16 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   pointer-events: none;
 }
 
-.hero-video-wrap iframe {
+.hero-video-wrap video {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 120vw;
-  height: 120vh;
-  min-width: 177.78vh;
-  min-height: 56.25vw;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
   transform: translate(-50%, -50%);
-  border: 0;
+  object-fit: cover;
   pointer-events: none;
 }
 
