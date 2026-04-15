@@ -1205,6 +1205,16 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   color: rgba(255,255,255,0.2);
 }
 
+.footer-credit-link {
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-credit-link:hover {
+  color: var(--gold-light);
+}
+
 .footer-dot {
   width: 3px;
   height: 3px;
